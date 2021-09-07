@@ -31,16 +31,7 @@ public class CartItem extends Base{
     public CartItem() {
     }
 
-    public CartItem(BigDecimal subTotal, BigDecimal quantity, BigDecimal price, Cart cart, Product product) {
-        this.subTotal = subTotal;
-        this.quantity = quantity;
-        this.price = price;
-        this.cart = cart;
-        this.product = product;
-    }
-
-
-
+    
     public BigDecimal getQuantity() {
         return this.quantity;
     }
@@ -74,9 +65,8 @@ public class CartItem extends Base{
     }
     
 
-    public BigDecimal getSubTotal() {
-        this.subTotal=this.price.multiply(quantity);
-        return this.subTotal;
+    public BigDecimal getSubtotal() {
+        return product.getProdPrice().multiply(quantity);
     }
 
 }

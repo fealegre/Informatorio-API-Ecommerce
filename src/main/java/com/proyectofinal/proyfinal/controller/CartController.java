@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/customers/")
+@RequestMapping(path = "api/customers")
 public class CartController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class CartController {
 	
 
 	//GET ALL CARTS (OBTENER TODOS LOS CARRITOS)
-	@GetMapping("")
+	@GetMapping("/carts")
 	public ResponseEntity<?> getAll(){
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(cartService.findAll());
@@ -102,6 +102,10 @@ public class CartController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"ERROR. Intente de nuevo.\"}");
 		}
 	}
+
+	
+
+
 
 
     

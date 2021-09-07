@@ -24,7 +24,7 @@ public class Cart extends Base {
 
     
     @Column
-    private String requiredBy;    
+    private String device;    
 
     @Column
     @CreationTimestamp
@@ -33,9 +33,13 @@ public class Cart extends Base {
     @Transient
     private BigDecimal total;
 
+    @Transient
+    private String customerName;
+
     @Column(nullable = false)
     private Boolean open;
 
+    @JsonIgnore
     @OneToMany(mappedBy= "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();
 
@@ -43,20 +47,15 @@ public class Cart extends Base {
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
-    // @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    // @JoinColumn(name = "customer_id", nullable = false)
-    // private Customer customer;
-
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // private Product product;
+    
 
 
 
     public Cart() {
     }
 
-    public Cart(String requiredBy, LocalDateTime cartCreationDate, BigDecimal total, Boolean open, List<CartItem> cartItem, Customer customer) {
-        this.requiredBy = requiredBy;
+    public Cart(String device, LocalDateTime cartCreationDate, BigDecimal total, Boolean open, List<CartItem> cartItem, Customer customer) {
+        this.device = device;
         this.cartCreationDate = cartCreationDate;
         this.total = total;
         this.open = open;
@@ -64,12 +63,12 @@ public class Cart extends Base {
     }
    
 
-    public String getRequiredBy() {
-        return this.requiredBy;
+    public String getDevice() {
+        return this.device;
     }
 
-    public void setRequiredBy(String requiredBy) {
-        this.requiredBy = requiredBy;
+    public void setDevice(String requiredBy) {
+        this.device = requiredBy;
     }
 
     public LocalDateTime getCartCreationDate() {
@@ -80,12 +79,8 @@ public class Cart extends Base {
         this.cartCreationDate = cartCreationDate;
     }
 
-    public BigDecimal getTotal() {
-        return this.total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
     public Boolean isOpen() {
@@ -116,6 +111,10 @@ public class Cart extends Base {
     public void removeCartItem(CartItem cartItem) {
         cartItems.remove(cartItem);
         cartItem.setCart(null);
+    }
+
+    public String getCustomerName() {
+        return customer.getCustName();
     }
 
 

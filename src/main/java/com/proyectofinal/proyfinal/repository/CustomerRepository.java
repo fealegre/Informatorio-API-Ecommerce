@@ -14,4 +14,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 
     List<Customer> findByCityName(String cityName);
     List<Customer> findByCustCreationDateAfter(LocalDateTime custCreationDate);
+
 }

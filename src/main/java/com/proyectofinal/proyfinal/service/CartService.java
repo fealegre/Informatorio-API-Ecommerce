@@ -51,24 +51,6 @@ public class CartService implements BaseService<Cart>{
     public Cart update(Long id, Cart entity) throws Exception {
         try {
             Cart cart=cartRepository.findById(id).get();
-            // if (entity.get!=null){
-            //     cart.setFirstName(entity.getFirstName());
-            // }
-		    // if (entity.getLastName()!=null){
-            //     cart.setLastName(entity.getLastName());
-            // }
-		    // if (entity.getCityName()!=null){
-            //     cart.setCityName(entity.getCityName());
-            // }
-		    // if (entity.getCustName()!=null){
-            //     cart.setCustName(entity.getCustName());
-            // }
-		    // if (entity.getCountryName()!=null){
-            //     cart.setCountryName(entity.getCountryName());
-            // }
-            // if (entity.getStateName()!=null){
-            //     cart.setStateName(entity.getStateName());
-            // }            
 		    Cart cartUpdated=cartRepository.save(cart);
 		    return cartUpdated;
         } catch (Exception e) {

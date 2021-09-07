@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Positive;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,6 +22,7 @@ public class Product extends Base{
     private String prodDesc;
 
     @Column(nullable = false)
+    @Positive
     private BigDecimal prodPrice;
 
     @Column    
