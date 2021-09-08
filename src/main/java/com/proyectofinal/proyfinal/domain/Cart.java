@@ -37,7 +37,7 @@ public class Cart extends Base {
     private String customerName;
 
     @Column(nullable = false)
-    private Boolean open;
+    private Boolean closed;
 
     @JsonIgnore
     @OneToMany(mappedBy= "cart", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -47,21 +47,8 @@ public class Cart extends Base {
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
-    
-
-
-
     public Cart() {
     }
-
-    public Cart(String device, LocalDateTime cartCreationDate, BigDecimal total, Boolean open, List<CartItem> cartItem, Customer customer) {
-        this.device = device;
-        this.cartCreationDate = cartCreationDate;
-        this.total = total;
-        this.open = open;
-        this.cartItems = cartItem;
-    }
-   
 
     public String getDevice() {
         return this.device;
@@ -83,16 +70,16 @@ public class Cart extends Base {
         return cartItems;
     }
 
-    public Boolean isOpen() {
-        return this.open;
+    public Boolean isClosed() {
+        return this.closed;
     }
 
-    public Boolean getOpen() {
-        return this.open;
+    public Boolean getClosed() {
+        return this.closed;
     }
 
-    public void setOpen(Boolean open) {
-        this.open = open;
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
     }
     
     public Customer getCustomer() {
